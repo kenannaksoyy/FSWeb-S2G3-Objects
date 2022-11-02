@@ -254,13 +254,14 @@ function arabaYapici(araba_adi,araba_km) {
 			let gecici=this.araba_km;
 			this.araba_km=this.araba_km+gidilen_km;
 			console.log(`Araba Adi: ${this.araba_adi}\nHareket Oncesi km ${gecici}\nGidilen km ${gidilen_km}\nAraba hareket sonrasi km ${this.araba_km}`);
+			return this.araba_km;
 		}
 
 	}
 }
 
 let araba1=new arabaYapici("BMW",10);
-araba1.surus(100);
+console.log(araba1.surus(100));
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
