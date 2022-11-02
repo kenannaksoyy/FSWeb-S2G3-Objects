@@ -15,9 +15,16 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(isim,fiyat,kategori){
+	const obje={
+		"isim":isim,
+		"fiyat":fiyat,
+		"kategori":kategori
+	};
+	return obje;
 }
+console.log(MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
+
 
 
 
@@ -30,8 +37,9 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 */
-
-
+console.log(MenuElemaniOlustur('Steakburger', 25, 'Burgerler'));
+console.log(MenuElemaniOlustur('Ayran', 5, 'İçecekler'));
+console.log(MenuElemaniOlustur('Yumurta',2,'Kahvaltı'));
 
 /* Görev 2: 
 	Özel bir öğle yemeği yiyorsun! Öğretmen ve öğrencilere %25, diğer kişilere %10 indirim var. Aşağıdaki burger nesnesine, indirimi fiyatı otomatik olarak hesaplayan bir metot ekleyin.
@@ -49,10 +57,23 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 const burger = {
 	isim: "Burger", 
 	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
-
+	kategori: "Öğle Yemeği",
+	indirim: function(kisi_tur){
+		if(kisi_tur==="öğretmen" || kisi_tur==="öğrenci"){
+			return this.fiyat * 0.75;
+		}
+		else if(kisi_tur==="diğer"){
+			return this.fiyat * 0.90;
+		}
+		else{
+			return `${kisi_tur} bey İndirim yok ${this.fiyat} fiyati ode`;
+		}
+	} 
 }
-
+console.log(burger.indirim("öğretmen"));
+console.log(burger.indirim("öğrenci"));
+console.log(burger.indirim("diğer"));
+console.log(burger.indirim("Doktor"));
 
 
 ///////////////Değerlendirmeler (MVP)///////////////////
@@ -71,6 +92,11 @@ const degerlendirmeler = [
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
+degerlendirmeler.forEach(degerlendirme =>{
+	if(degerlendirme.isim==="Ahmet"){
+		console.log(degerlendirme.geribildirim);
+	}
+});
 
 
 
@@ -79,7 +105,13 @@ const degerlendirmeler = [
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
-
+degerlendirmeler.forEach(degerlendirme =>{
+	if(degerlendirme.geribildirim===""){
+		degerlendirme.geribildirim="Kesinlikle karaoke Cumalarını seviyorum! Yemek ve içki çeşitleri iyi.";
+		console.log(degerlendirme.isim);
+		console.log(degerlendirme.geribildirim);
+	}
+});
 
 
 /*  Görev 5: 
@@ -94,10 +126,16 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
+function DegerledirmeEkle(gelen_degerlendirmeler,gelen_isim,gelen_puan,gelen_geribildirim){
+	const degerlendirme ={
+		isim:gelen_isim,
+		puan:gelen_puan,
+		geribildirim:gelen_geribildirim
+	};
+	gelen_degerlendirmeler.push(degerlendirme);
+	return gelen_degerlendirmeler;
 }
+console.log(DegerledirmeEkle(degerlendirmeler, 'Hurşut', 2, 'Boktan yemekler!'));
 
 
 
@@ -112,11 +150,16 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(gelen_degerlendirmeler,gelen_key) {
+	for (let i=0;i<gelen_degerlendirmeler.length;i++){
+		if(i===gelen_key){
+			let a_string =`${gelen_degerlendirmeler[i].isim} isimli kişi ${gelen_degerlendirmeler[i].puan} puan verdi ve şunları yazdı: ${gelen_degerlendirmeler[i].geribildirim}`;
+			return a_string;
 
+		}
+	}
 }
-
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,0));
 
 
 /*  Görev 7:  
@@ -132,11 +175,13 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(gelen_degerlendirmeler) {
+	let s=gelen_degerlendirmeler.length - 1;
+	let a_string =`${gelen_degerlendirmeler[s].isim} isimli kişi ${gelen_degerlendirmeler[s].puan} puan verdi ve şunları yazdı: ${gelen_degerlendirmeler[s].geribildirim}`;
+	return a_string;
 } 
 
-
+console.log(SonDegerlendirmeyiAl(degerlendirmeler));
 
 /////////////// BONUS  GÖRVLER////////////////////
 
