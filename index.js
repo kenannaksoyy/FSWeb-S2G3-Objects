@@ -199,9 +199,11 @@ console.log(SonDegerlendirmeyiAl(degerlendirmeler));
 	]
 */
 
-function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function PuanaGoreDegerlendirmeAl(gelen_degerlendirmeler,gelen_puan) {
+    let dizi = gelen_degerlendirmeler.filter(degerlendirme=> gelen_puan<=degerlendirme.puan && degerlendirme.puan <gelen_puan + 1);
+	return dizi
 }
+console.log(PuanaGoreDegerlendirmeAl(degerlendirmeler, 4));
 
 
 /*  BONUS 2:    
@@ -211,9 +213,13 @@ function PuanaGoreDegerlendirmeAl(/* Kodlar buraya */) {
 	
 */
 
-function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
-    /* Kodlar buraya */
+function UzunDegerlendirmeleriAl(gelen_degerlendirmeler) {
+    let dizi = gelen_degerlendirmeler.filter(degerlendirme=> 
+		degerlendirme.geribildirim.split(" ").length>15
+		);
+	return dizi;
 }
+console.log(UzunDegerlendirmeleriAl(degerlendirmeler));
 
 
 /*  BONUS 3:  
@@ -234,10 +240,27 @@ function UzunDegerlendirmeleriAl(/* Kodlar buraya */) {
 */
 
 
-function arabaYapici(/* Kodlar buraya */) {
-    /* Kodlar buraya */
-    
+function arabaYapici(araba_adi,araba_km) {
+    this.araba_adi=araba_adi;
+	this.araba_km=araba_km;
+	this.surus=function(gidilen_km){
+		if(gidilen_km===0){
+			console.log("Araba Durgun");
+		}
+		else if (gidilen_km<0){
+			console.log("- km yok yon katma");
+		}
+		else{
+			let gecici=this.araba_km;
+			this.araba_km=this.araba_km+gidilen_km;
+			console.log(`Araba Adi: ${this.araba_adi}\nHareket Oncesi km ${gecici}\nGidilen km ${gidilen_km}\nAraba hareket sonrasi km ${this.araba_km}`);
+		}
+
+	}
 }
+
+let araba1=new arabaYapici("BMW",10);
+araba1.surus(100);
 
 
 /*  Buradan aşağıdaki kodları değiştirmeyin lütfen */
